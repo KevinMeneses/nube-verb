@@ -1,0 +1,20 @@
+-- Abre una pestaña de demo: pista con audio (fader en -inf, no suena), Nube Verb con un preset,
+-- ventana del FX flotante y reproducción en loop para ver las gráficas. Cerrar con tests/ui_close.lua.
+local ROOT = os.getenv("HOME") .. "/Music/NubeVerb/tests"
+local AUDIO = os.getenv("NUBE_AUDIO") or (os.getenv("HOME") .. "/Music/ClaudeBeats/Master/Nube baja (master X20).wav")
+reaper.Main_OnCommand(40859, 0)
+reaper.InsertTrackAtIndex(0, false); local tr = reaper.GetTrack(0, 0)
+reaper.GetSetMediaTrackInfo_String(tr, "P_NAME", "Nube Verb demo", true)
+reaper.SetMediaTrackInfo_Value(tr, "D_VOL", 0)
+local item = reaper.AddMediaItemToTrack(tr); local take = reaper.AddTakeToMediaItem(item)
+local src = reaper.PCM_Source_CreateFromFile(AUDIO); reaper.SetMediaItemTake_Source(take, src)
+reaper.SetMediaItemInfo_Value(item, "D_LENGTH", 60)
+reaper.UpdateArrange()
+local fx = reaper.TrackFX_AddByName(tr, "JS:Nube Verb/nube_verb.jsfx", false, -1)
+reaper.TrackFX_SetParam(tr, fx, 30, tonumber(os.getenv("NUBE_PRESET") or "3"))
+reaper.TrackFX_Show(tr, fx, 3)
+reaper.GetSet_LoopTimeRange(true, true, 30, 90, false)
+reaper.SetEditCurPos(30, false, false)
+reaper.GetSetRepeat(1)
+reaper.OnPlayButton()
+local f = io.open(ROOT .. "/out/ui.txt", "w"); f:write("done\n"); f:close()
