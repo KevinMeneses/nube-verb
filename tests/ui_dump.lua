@@ -1,5 +1,5 @@
 -- Escribe los parámetros del Nube Verb de la pista 1 (pestaña actual) en tests/out/dump.txt
-local OUT = os.getenv("HOME") .. "/Music/NubeVerb/tests/out"
+local OUT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") .. "/out"
 local f = io.open(OUT .. "/dump.txt", "w")
 local tr = reaper.GetTrack(0, 0)
 for p = 0, 29 do

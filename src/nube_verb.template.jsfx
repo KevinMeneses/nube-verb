@@ -1,6 +1,7 @@
 desc:Nube Verb - reverb (6 espacios, decay por frecuencia, ducking, gate, shimmer, freeze)
 //tags: reverb algorithmic plate room hall chamber shimmer freeze ducking gate
-//author: Kev Meneses + Claude
+//author: Kev Meneses + Claude (Claude Code)
+//license: GPL-3.0-or-later
 //version: 1.0.0
 
 slider1:3<0,5,1{Placa,Cuarto,Camara,Sala,Catedral,Nube}>-Espacio
@@ -329,6 +330,13 @@ update_params();
 
 @block
 (upd || (pd_sync && tempo != last_tempo)) ? ( upd = 0; update_params(); );
+// detenido (o al empezar a sonar) pre-delay y ganancias saltan directo; sonando se deslizan sin clics
+a_ps = play_state & 5;
+(!a_ps || !a_lps) ? (
+  a_pd = pd_t; a_dg = dry_t; a_wg = wet_t; a_og = out_t;
+//@GEN:SNAP@
+);
+a_lps = a_ps;
 // renormaliza los osciladores de la modulacion
 //@GEN:RENORM@
 

@@ -1,6 +1,6 @@
 -- Abre una pestaña de demo: pista con audio (fader en -inf, no suena), Nube Verb con un preset,
 -- ventana del FX flotante y reproducción en loop para ver las gráficas. Cerrar con tests/ui_close.lua.
-local ROOT = os.getenv("HOME") .. "/Music/NubeVerb/tests"
+local ROOT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$")
 local AUDIO = os.getenv("NUBE_AUDIO") or (os.getenv("HOME") .. "/Music/ClaudeBeats/Master/Nube baja (master X20).wav")
 reaper.Main_OnCommand(40859, 0)
 reaper.InsertTrackAtIndex(0, false); local tr = reaper.GetTrack(0, 0)

@@ -1,7 +1,8 @@
 desc:Nube Verb - reverb (6 espacios, decay por frecuencia, ducking, gate, shimmer, freeze)
 // ARCHIVO GENERADO por tools/build.py desde src/nube_verb.template.jsfx: editar la plantilla.
 //tags: reverb algorithmic plate room hall chamber shimmer freeze ducking gate
-//author: Kev Meneses + Claude
+//author: Kev Meneses + Claude (Claude Code)
+//license: GPL-3.0-or-later
 //version: 1.0.0
 
 slider1:3<0,5,1{Placa,Cuarto,Camara,Sala,Catedral,Nube}>-Espacio
@@ -407,6 +408,28 @@ update_params();
 
 @block
 (upd || (pd_sync && tempo != last_tempo)) ? ( upd = 0; update_params(); );
+// detenido (o al empezar a sonar) pre-delay y ganancias saltan directo; sonando se deslizan sin clics
+a_ps = play_state & 5;
+(!a_ps || !a_lps) ? (
+  a_pd = pd_t; a_dg = dry_t; a_wg = wet_t; a_og = out_t;
+  f_ls0 = f_dd0 = lnT[0]; f_di0 = 0;
+  f_ls1 = f_dd1 = lnT[1]; f_di1 = 0;
+  f_ls2 = f_dd2 = lnT[2]; f_di2 = 0;
+  f_ls3 = f_dd3 = lnT[3]; f_di3 = 0;
+  f_ls4 = f_dd4 = lnT[4]; f_di4 = 0;
+  f_ls5 = f_dd5 = lnT[5]; f_di5 = 0;
+  f_ls6 = f_dd6 = lnT[6]; f_di6 = 0;
+  f_ls7 = f_dd7 = lnT[7]; f_di7 = 0;
+  f_ls8 = f_dd8 = lnT[8]; f_di8 = 0;
+  f_ls9 = f_dd9 = lnT[9]; f_di9 = 0;
+  f_ls10 = f_dd10 = lnT[10]; f_di10 = 0;
+  f_ls11 = f_dd11 = lnT[11]; f_di11 = 0;
+  f_ls12 = f_dd12 = lnT[12]; f_di12 = 0;
+  f_ls13 = f_dd13 = lnT[13]; f_di13 = 0;
+  f_ls14 = f_dd14 = lnT[14]; f_di14 = 0;
+  f_ls15 = f_dd15 = lnT[15]; f_di15 = 0;
+);
+a_lps = a_ps;
 // renormaliza los osciladores de la modulacion
 f_c = 1 / sqrt(f_mc0 * f_mc0 + f_ms0 * f_ms0); f_mc0 *= f_c; f_ms0 *= f_c;
 f_c = 1 / sqrt(f_mc1 * f_mc1 + f_ms1 * f_ms1); f_mc1 *= f_c; f_ms1 *= f_c;

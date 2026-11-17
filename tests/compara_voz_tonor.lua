@@ -1,6 +1,6 @@
 -- Compara la cadena "Voz Tonor 6 · retorno reverb" (de-esser + EQ + ReaVerbate) con Nube Verb (parámetros en tests/out/cmp_params.txt:
 -- "slider valor" por línea). Escribe tests/out/cmp/{orig,nube}_{impulse,noise_burst,vocal}.wav; analizar con tests/compara_voz_tonor.py
-local ROOT = os.getenv("HOME") .. "/Music/NubeVerb/tests"
+local ROOT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$")
 local OUT = ROOT .. "/out/cmp"; os.execute('mkdir -p "' .. OUT .. '"')
 local logf = io.open(OUT .. "/log.txt", "w")
 local params = {}

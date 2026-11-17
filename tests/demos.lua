@@ -1,5 +1,5 @@
 -- Renderiza la voz seca (14 s) por varios presets de Nube Verb en demos/*.wav
-local ROOT = os.getenv("HOME") .. "/Music/NubeVerb"
+local ROOT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") .. "/.."
 local OUT = ROOT .. "/demos"
 local SRC = ROOT .. "/tests/signals/vocal.wav"
 local JOBS = {{0, "0 - seca"}, {1, "1 - Voz rap - placa corta"}, {3, "3 - Voz hook - sala amplia"}, {4, "4 - Voz chill - Nube oscura"},

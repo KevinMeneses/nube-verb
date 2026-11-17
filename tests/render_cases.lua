@@ -1,6 +1,6 @@
 -- Carga Nube Verb en una pestaña nueva, renderiza cada caso y cierra la pestaña.
 -- Uso: REAPER -nonewinst tests/render_cases.lua   (escribe tests/out/*.wav y tests/out/log.txt)
-local ROOT = os.getenv("HOME") .. "/Music/NubeVerb/tests"
+local ROOT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$")
 local OUT = ROOT .. "/out"
 os.execute('mkdir -p "' .. OUT .. '"')
 local logf = io.open(OUT .. "/log.txt", "w")

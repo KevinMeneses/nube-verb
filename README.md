@@ -1,6 +1,27 @@
+<!-- en -->
 # Nube Verb
 
-Reverb para REAPER (JSFX, macOS/Windows/Linux), hermana de [Nube EQ](../NubeEQ) y [Nube Comp](../NubeComp): fácil de
+A free algorithmic reverb for [REAPER](https://www.reaper.fm), written as a JSFX (macOS / Windows / Linux), part of the
+[Nube plugins](https://github.com/KevinMeneses/nube-plugins).
+
+![Nube Verb](docs/captura.png)
+
+16-line feedback delay network, 6 spaces (Plate, Room, Chamber, Hall, Cathedral, Cloud), decay 0.1–20 s with low/high multipliers, tempo-synced pre-delay, size, diffusion, early reflections, modulation, de-essing of the tail, ducking, gate, shimmer, freeze, vintage modes and 14 presets. ~4.5 % CPU.
+
+**Install** — with [ReaPack](https://reapack.com): *Extensions → ReaPack → Import repositories*, paste
+`https://github.com/KevinMeneses/nube-plugins/raw/main/index.xml`, then install **Nube Verb**. Or copy `nube_verb.jsfx`
+into `REAPER/Effects/Nube Verb/` (on macOS `./install.sh` links it). It shows up as **JS: Nube Verb**. The interface is in Spanish.
+
+**How it was made** — designed and built with [Claude Code](https://claude.com/claude-code). Since an AI can't
+listen, every feature is verified by rendering test cases inside REAPER and comparing them with the theory
+(`tests/run.sh`), plus mouse-driven UI tests (`tests/ui_test.py`).
+
+**License** — GPL-3.0-or-later (see `LICENSE`).
+
+---
+
+## Español
+Reverb para REAPER (JSFX, macOS/Windows/Linux), hermana de [Nube EQ](https://github.com/KevinMeneses/nube-eq) y [Nube Comp](https://github.com/KevinMeneses/nube-comp): fácil de
 usar, con todo lo de una reverb de pago y seis espacios con carácter propio.
 
 ![Nube Verb](docs/captura.png)
@@ -112,3 +133,5 @@ Crea un enlace en `~/Library/Application Support/REAPER/Effects/Nube Verb/`. En 
 - Trampas de EEL2 (las mismas del EQ y el Comp): variables sin distinción de mayúsculas, nada de notación
   científica, las funciones se definen antes de usarse (si no, REAPER deja pasar el audio sin procesar), y la
   interfaz corre en otro hilo: la interfaz pide recalcular con `upd = 1` y el audio lo hace en `@block`.
+
+Nota sobre las pruebas: necesitan REAPER y Python con numpy, scipy y soundfile (`NUBE_PY=/ruta/a/python tests/run.sh`). Los casos con voz o música real usan grabaciones propias que no están en el repo (`tests/signals/`); sin ellas esos casos no se pueden correr.

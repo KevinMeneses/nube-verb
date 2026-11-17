@@ -88,7 +88,10 @@ def er_sum():
         return f"  a_e{ch} = " + "\n    + ".join(terms) + ";"
     return side("L", 0) + "\n" + side("R", 16)
 
-GEN = {"ERLOAD": er_load(), "ERSUM": er_sum(), "LOAD": load(), "INIT": init(), "CTRL": ctrl(), "RENORM": renorm(), "DIFF": diff(),
+def snap(n=16):
+    return "\n".join(f"  f_ls{i} = f_dd{i} = lnT[{i}]; f_di{i} = 0;" for i in range(n))
+
+GEN = {"SNAP": snap(), "ERLOAD": er_load(), "ERSUM": er_sum(), "LOAD": load(), "INIT": init(), "CTRL": ctrl(), "RENORM": renorm(), "DIFF": diff(),
        "READ16": read(16), "READ8": read(8), "WRITE16": write(16), "WRITE8": write(8)}
 txt = SRC.read_text()
 def sub(m):

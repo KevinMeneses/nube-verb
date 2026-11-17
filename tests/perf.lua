@@ -1,5 +1,5 @@
 -- CPU: render de 60 s sin plugin y con 10 instancias (peor caso: Catedral, 16 líneas, shimmer, anti-eses, filtros, ducking, gate).
-local OUT = os.getenv("HOME") .. "/Music/NubeVerb/tests/out"
+local OUT = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") .. "/out"
 local AUDIO = os.getenv("HOME") .. "/Music/ClaudeBeats/Master/Nube baja (master X20).wav"
 local f = io.open(OUT .. "/perf.txt", "w")
 reaper.Main_OnCommand(40859, 0)

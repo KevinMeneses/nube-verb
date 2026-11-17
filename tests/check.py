@@ -52,8 +52,9 @@ inrange("agudos × 0.3: medios quietos", rt60(x, 300, 700), 1.7, 2.3)
 # pre-delay: primer eco
 def onset(name):
     x = np.abs(load(name)).max(1); return (np.argmax(x > x.max() * 1e-3) - int(0.1 * SR)) / SR * 1000
-scalar("pre-delay 100 ms (inicio, ms)", onset("pre100"), 100.4, 0.6)
-scalar("pre-delay 1/8 a 120 BPM (ms)", onset("sync18"), 250.4, 0.6)
+# el primer eco llega despues del pre-delay + la difusion (~0.4 ms) + la modulacion de las lineas (hasta ~1 ms segun su fase)
+inrange("pre-delay 100 ms (inicio, ms)", onset("pre100"), 100.0, 101.5)
+inrange("pre-delay 1/8 a 120 BPM (ms)", onset("sync18"), 250.0, 251.5)
 
 # ancho
 x = load("width0"); inrange("ancho 0 %: L = R (dB)", db(np.abs(x[:, 0] - x[:, 1]).max()), -300, -110)

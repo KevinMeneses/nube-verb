@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Renderiza los casos en REAPER (pestaña temporal) y verifica la respuesta.
 cd "$(dirname "$0")/.."
-PY=${NUBE_PY:-$HOME/Music/ClaudeBeats/.venv/bin/python}
+PY=${NUBE_PY:-python3}   # necesita numpy, scipy y soundfile
 [ -f tests/signals/impulse.wav ] || $PY tests/make_signals.py
 rm -f tests/out/log.txt
 /Applications/REAPER.app/Contents/MacOS/REAPER -nonewinst "$PWD/tests/render_cases.lua" >/dev/null 2>&1 &
