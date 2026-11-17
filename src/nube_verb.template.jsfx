@@ -2,7 +2,7 @@ desc:Nube Verb - reverb (6 espacios, decay por frecuencia, ducking, gate, shimme
 //tags: reverb algorithmic plate room hall chamber shimmer freeze ducking gate
 //author: Kev Meneses + Claude (Claude Code)
 //license: GPL-3.0-or-later
-//version: 1.0.0
+//version: 1.0.1
 
 slider1:3<0,5,1{Placa,Cuarto,Camara,Sala,Catedral,Nube}>-Espacio
 slider2:25<0,100,0.1>-Mezcla (%)
