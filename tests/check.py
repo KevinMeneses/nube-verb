@@ -111,7 +111,7 @@ for m in range(6):
     inrange(f"espacio {m}: RT60 2 s", rt60(load(f"mode{m}")), 1.7, 2.35)
 for name in ("tiny", "big_mod_max"):
     inrange(f"{name}: suena", rms(load(name)), -90, 0)
-for p in range(1, 15):
+for p in range(1, 28):
     x = load(f"preset{p}"); inrange(f"preset {p}: cola audible tras la ráfaga", lv(x, 2.6, 2.8), -80, -10)
 print("\nFALLAS:", fails)
 sys.exit(1 if fails else 0)

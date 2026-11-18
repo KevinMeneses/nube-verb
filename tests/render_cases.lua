@@ -59,7 +59,7 @@ local CASES = {
   {"tiny",        "impulse.wav",     W{[5] = 0.1, [6] = 0, [1] = 1}},
 }
 for m = 0, 5 do CASES[#CASES + 1] = {"mode" .. m, "impulse.wav", W{[1] = m, [8] = 50, [7] = 80}} end
-for p = 1, 14 do CASES[#CASES + 1] = {"preset" .. p, "noise_burst.wav", {[31] = p}} end
+for p = 1, 27 do CASES[#CASES + 1] = {"preset" .. p, "noise_burst.wav", {[31] = p}} end
 
 reaper.Main_OnCommand(40859, 0) -- nueva pestaña
 reaper.GetSetProjectInfo(0, "PROJECT_SRATE", 48000, true)
