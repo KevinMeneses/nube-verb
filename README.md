@@ -6,7 +6,7 @@ A free algorithmic reverb for [REAPER](https://www.reaper.fm), written as a JSFX
 
 ![Nube Verb](docs/captura.png)
 
-16-line feedback delay network, 6 spaces (Plate, Room, Chamber, Hall, Cathedral, Cloud), decay 0.1–20 s with low/high multipliers, tempo-synced pre-delay, size, diffusion, early reflections, modulation, de-essing of the tail, ducking, gate, shimmer, freeze, vintage modes and 14 presets. ~4.5 % CPU.
+16-line feedback delay network, 6 spaces (Plate, Room, Chamber, Hall, Cathedral, Cloud), decay 0.1–20 s with low/high multipliers, tempo-synced pre-delay, size, diffusion, early reflections, modulation, de-essing of the tail, ducking, gate, shimmer, freeze, vintage modes and 27 presets. ~4.5 % CPU.
 
 **Install** — with [ReaPack](https://reapack.com): *Extensions → ReaPack → Import repositories*, paste
 `https://github.com/KevinMeneses/nube-plugins/raw/main/index.xml`, then install **Nube Verb**. Or copy `nube_verb.jsfx`
@@ -106,7 +106,7 @@ Crea un enlace en `~/Library/Application Support/REAPER/Effects/Nube Verb/`. En 
   que ningún render tenga NaN ni se dispare): mezcla y salida exactas, envío sin seca, RT60 (0.5/2/6 s, Eco, con
   modulación, los 6 espacios ±15 %), graves/agudos ×, pre-delay en ms y a tempo (±0.6 ms), ancho (mono exacto,
   correlación ~0), cortes, época, ducking (−12.0 dB), gate, shimmer arriba/abajo y que al máximo se apague,
-  anti-eses (−10 dB en las s, 0 dB en vocales), freeze y los 14 presets.
+  anti-eses (−10 dB en las s, 0 dB en vocales), freeze y los 27 presets.
 - `tests/ui_test.py` (+ `ui.py`, `ui_dump.lua`, `scroll.swift`, `reopen.sh`): pruebas de la interfaz con el mouse
   (`cliclick`, 16 chequeos). `tests/reopen.sh` abre la demo; `tests/ui_close.lua` la cierra.
 - `tests/perf.lua`: CPU. `tests/demos.lua`: voz seca por 6 presets en `demos/`.

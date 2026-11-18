@@ -3,7 +3,7 @@ desc:Nube Verb - reverb (6 espacios, decay por frecuencia, ducking, gate, shimme
 //tags: reverb algorithmic plate room hall chamber shimmer freeze ducking gate
 //author: Kev Meneses + Claude (Claude Code)
 //license: GPL-3.0-or-later
-//version: 1.0.1
+//version: 1.1.0
 
 slider1:3<0,5,1{Placa,Cuarto,Camara,Sala,Catedral,Nube}>-Espacio
 slider2:25<0,100,0.1>-Mezcla (%)
@@ -35,7 +35,7 @@ slider27:0<0,1,1{Apagado,Encendido}>-Freeze
 slider28:0<0,1,1{Inserto,Envio (100% humeda)}>-Uso
 slider29:0<-24,12,0.1>-Salida (dB)
 slider30:0<0,1,1{Alta (16 lineas),Eco (8 lineas)}>-Calidad
-slider31:0<0,14,1{-,Voz rap - placa corta,Voz Tonor - Reverb (Nube baja),Voz hook - sala amplia,Voz chill - Nube oscura,Voz - ambiente corto,Snare / clap - placa brillante,Snare 80s con gate,Bateria - cuarto,Rhodes / keys - camara,Guitarra / arpegios 70s,Pads infinitos (Nube),Shimmer celestial,Catedral,Por defecto}>-Cargar preset
+slider31:0<0,27,1{-,Voz rap - placa corta,Voz Tonor - Reverb (Nube baja),Voz hook - sala amplia,Voz chill - Nube oscura,Voz - ambiente corto,Snare / clap - placa brillante,Snare 80s con gate,Bateria - cuarto,Rhodes / keys - camara,Guitarra / arpegios 70s,Pads infinitos (Nube),Shimmer celestial,Catedral,Voz trap - placa oscura con ducking,Voz drill - cuarto seco,Voz R&B - sala sedosa,Voz - envio placa (100% humeda),Voz - envio sala (pre-delay 1/16),Coros - sala ancha atras,808 / bajo - solo un toque arriba,Kick - cuarto chico,Hi-hats - aire,Plucks / campanas - camara brillante,Lo-fi - cuarto viejo (70s),Cine - catedral oscura,Shimmer octava + quinta,Por defecto}>-Cargar preset
 
 in_pin:Entrada L
 in_pin:Entrada R
@@ -352,7 +352,7 @@ a_pd = pd_t;
 a_dg = dry_t; a_wg = wet_t; a_og = out_t; a_fzi = fzi_t;
 
 // ---------------------------------------------------------------- presets
-NPRESETS = 14;
+NPRESETS = 27;
 function preset_name(n)
 (
   n == 1 ? "Voz rap - placa corta" :
@@ -368,7 +368,20 @@ function preset_name(n)
   n == 11 ? "Pads infinitos (Nube)" :
   n == 12 ? "Shimmer celestial" :
   n == 13 ? "Catedral" :
-  n == 14 ? "Por defecto" : "";
+  n == 14 ? "Voz trap - placa oscura con ducking" :
+  n == 15 ? "Voz drill - cuarto seco" :
+  n == 16 ? "Voz R&B - sala sedosa" :
+  n == 17 ? "Voz - envio placa (100% humeda)" :
+  n == 18 ? "Voz - envio sala (pre-delay 1/16)" :
+  n == 19 ? "Coros - sala ancha atras" :
+  n == 20 ? "808 / bajo - solo un toque arriba" :
+  n == 21 ? "Kick - cuarto chico" :
+  n == 22 ? "Hi-hats - aire" :
+  n == 23 ? "Plucks / campanas - camara brillante" :
+  n == 24 ? "Lo-fi - cuarto viejo (70s)" :
+  n == 25 ? "Cine - catedral oscura" :
+  n == 26 ? "Shimmer octava + quinta" :
+  n == 27 ? "Por defecto" : "";
 );
 // pr(espacio, mezcla, pre-delay, decay, tamano, difusion, tempranas, ancho)
 function pr(m, mx, pd, dc, sz, df, er, wd)
@@ -399,6 +412,19 @@ function load_preset(n)
   n == 11 ? ( pr(5, 40, 40, 12, 80, 90, 10, 150); tono(1, 250, 0.4, 4000, 200, 20000, 0); sset(10, 60); sset(11, 0.3); ) :
   n == 12 ? ( pr(5, 35, 50, 8, 75, 90, 10, 150); tono(1, 250, 0.6, 4000, 250, 20000, 0); sset(24, 45); sset(10, 50); ) :
   n == 13 ? ( pr(4, 30, 30, 6, 60, 80, 50, 120); tono(1.2, 250, 0.45, 4000, 20, 20000, 0); );
+  n == 14 ? ( pr(0, 18, 30, 1.4, 45, 85, 20, 110); tono(0.6, 300, 0.4, 3500, 250, 7000, 6); sset(19, 8); );
+  n == 15 ? ( pr(1, 12, 10, 0.5, 35, 70, 70, 100); tono(0.7, 300, 0.6, 5000, 250, 9000, 4); );
+  n == 16 ? ( pr(3, 22, 45, 2.6, 60, 85, 30, 130); tono(0.7, 300, 0.5, 4500, 200, 9000, 6); sset(19, 5); );
+  n == 17 ? ( pr(0, 100, 40, 1.6, 50, 85, 20, 110); tono(0.7, 300, 0.5, 5000, 300, 8000, 6); sset(28, 1); );
+  n == 18 ? ( pr(3, 100, 0, 2.2, 55, 80, 35, 120); sset(4, 4); tono(0.6, 350, 0.5, 4500, 250, 8000, 6); sset(28, 1); );
+  n == 19 ? ( pr(3, 35, 30, 3, 65, 85, 30, 180); tono(0.7, 300, 0.45, 4000, 250, 8000, 6); );
+  n == 20 ? ( pr(1, 8, 0, 0.4, 30, 70, 60, 60); tono(0.5, 250, 0.5, 4000, 300, 5000, 0); );
+  n == 21 ? ( pr(1, 10, 0, 0.3, 25, 70, 80, 80); tono(0.5, 250, 0.6, 5000, 200, 10000, 0); );
+  n == 22 ? ( pr(0, 12, 15, 0.8, 40, 90, 10, 140); tono(1, 250, 0.7, 6000, 1500, 20000, 0); );
+  n == 23 ? ( pr(2, 25, 25, 1.8, 50, 85, 30, 130); tono(1, 250, 0.6, 5000, 250, 20000, 0); );
+  n == 24 ? ( pr(1, 25, 10, 1, 40, 60, 60, 90); tono(1, 250, 0.4, 3000, 200, 6000, 0); sset(26, 2); );
+  n == 25 ? ( pr(4, 35, 60, 8, 80, 85, 30, 150); tono(1.2, 250, 0.3, 2500, 100, 7000, 0); sset(10, 40); );
+  n == 26 ? ( pr(5, 35, 50, 9, 80, 90, 10, 150); tono(1, 250, 0.6, 4000, 300, 20000, 0); sset(24, 40); sset(25, 3); sset(10, 50); );
   upd = 1;
 );
 
